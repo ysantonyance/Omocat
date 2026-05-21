@@ -1,0 +1,159 @@
+/*html {
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4;
+}*/
+
+body {
+  font-family: "Yu Gothic Medium";
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+}
+
+body img {
+  max-width: 250px;
+  max-height: 500px;
+}
+
+.card-name {
+  max-height: 50px;
+  text-align: center;
+}
+
+#products-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 35px;
+  margin: auto 50px;
+}
+
+.product-card {
+  width: 100%;
+  min-width: 0;
+ }
+
+.product-img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.product-img:hover {
+  transition: delay 0.5s;
+}
+
+.sold-badge {
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  align-content: center;
+  pointer-events: none;
+  top: 0.5px;
+  left: 0.5px;
+}
+
+.img-container {
+  position: relative;
+}
+
+.nav-menu {
+  list-style: none;
+  align-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-color: white;
+}
+
+.nav-menu > li {
+  position: relative;
+}
+
+.nav-menu > li > a {
+  display: block;
+  color: grey;
+  text-decoration: none;
+  text-align: left;
+  font-size: 12px;
+}
+
+.nav-menu > li > a:hover {
+  transition: color 0.2s;
+  color: darkgrey;
+}
+
+.nav-menu ul {
+  display: none;
+  position: absolute;
+  list-style: none;
+  background-color: white;
+  z-index: 100;
+  left: 0;
+  right: auto;
+  min-width: 160px;
+  padding: 8px 0;
+  top: 100%;
+}
+
+.nav-menu ul > li > a {
+  text-decoration: none;
+  color: grey;
+}
+
+.nav-menu ul li a {
+  white-space: nowrap;
+  text-align: left;
+  display: block;
+  font-size: 12px;
+  padding: 10px 8px;
+  margin: 0;
+}
+
+.nav-menu ul li a:hover {
+  transition: color 0.2s;
+  color: darkgrey;
+}
+
+.nav-menu > li:hover > ul {
+  display: block;
+}
+
+
+@media (max-width: 1096px) {
+  .card-name {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 990px) {
+  #products-container {
+    gap: 15px;
+    margin: auto 12px;
+  }
+
+  .card-name {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  #products-container {
+    grid-template-columns: repeat(3, 1fr); !important;
+    gap: 8px;
+    margin: auto 10px;
+  }
+
+  .card-name {
+    font-size: 10px;
+  }
+
+  .nav-menu {
+    max-width: 480px;
+  }
+}
