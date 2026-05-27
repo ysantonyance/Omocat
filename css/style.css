@@ -1,11 +1,38 @@
-/*html {
-  color: #222;
-  font-size: 1em;
-  line-height: 1.4;
-}*/
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/zen-maru-gothic/ZenMaruGothic-Regular.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/zen-maru-gothic/ZenMaruGothic-Medium.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/zen-maru-gothic/ZenMaruGothic-Bold.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../fonts/zen-maru-gothic/ZenMaruGothic-Black.ttf') format('ttf');
+}
+
+html {
+  letter-spacing: 1px;
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
 
 body {
-  font-family: "Yu Gothic Medium";
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-style: normal;
   text-align: center;
@@ -15,6 +42,7 @@ body img {
   max-width: 250px;
   max-height: 500px;
 }
+
 
 .card-name {
   max-height: 50px;
@@ -39,9 +67,6 @@ body img {
   height: auto;
 }
 
-.product-img:hover {
-  transition: delay 0.5s;
-}
 
 .sold-badge {
   position: absolute;
@@ -61,14 +86,48 @@ body img {
   position: relative;
 }
 
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: white;
+  padding: 8px 0;
+}
+
 .nav-menu {
   list-style: none;
-  align-content: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  background-color: white;
+  gap: 28px;
+
+  margin: 0;
+  padding: 0;
+}
+
+.nav-logos {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.omocat-logo img {
+  height: 90px;
+  width: 90px;
+}
+
+.useful-logo {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  right: 40px;
+}
+
+.useful-logo img{
+  height: 10px;
+  width: 10px;
+  padding: 20px;
 }
 
 .nav-menu > li {
@@ -81,15 +140,15 @@ body img {
   text-decoration: none;
   text-align: left;
   font-size: 12px;
+  font-weight: 400;
+  transition: color 0.2s ease;
 }
 
 .nav-menu > li > a:hover {
-  transition: color 0.2s;
   color: darkgrey;
 }
 
 .nav-menu ul {
-  display: none;
   position: absolute;
   list-style: none;
   background-color: white;
@@ -99,6 +158,17 @@ body img {
   min-width: 160px;
   padding: 8px 0;
   top: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s,
+  transform 0.2s,
+  visibility 0s linear 0.2s;
+}
+
+.nav-menu > li:hover > ul {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
 }
 
 .nav-menu ul > li > a {
@@ -124,6 +194,174 @@ body img {
   display: block;
 }
 
+.has-dropdown:after {
+  content: "˅";
+  font-size: 15px;
+  margin-left: 6px;
+}
+
+footer {
+  padding: 50px;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: grey;
+  gap: 60px;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.footer-content img {
+  max-width: 15px;
+  margin: 15px;
+}
+
+.footer-content a {
+  text-decoration: none;
+  color: grey;
+}
+
+.footer-content h3{
+  font-size: 14px;
+  font-weight: 500;
+  pointer-events: none;
+  color: black;
+}
+
+.footer-content button {
+  width: 120px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.footer-content button:hover {
+  background-color: dimgrey;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.footer-bottom a {
+  text-decoration: none;
+  color: dimgrey;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  visibility: hidden;
+}
+
+.drawer-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+
+.drawer-content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 750px;
+  height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.6s;
+}
+
+.cart-drawer.open {
+  visibility: visible;
+}
+
+.cart-drawer.open .drawer-overlay {
+  opacity: 1;
+}
+
+.cart-drawer.open .drawer-content {
+  transform: translateX(0);
+}
+
+.drawer-header, .drawer-footer {
+  padding: 0 15px;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-body {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.drawer-footer {
+  border-top: 1px solid #eee;
+  border-bottom: none;
+  padding: 20px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.cart-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-badge {
+  position: absolute;
+  font-size: 12px;
+  top: 20px;
+  right: 5px;
+}
+
+.checkout-btn {
+  width: 120px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.checkout-btn:hover {
+  background-color: dimgrey;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cart-total {
+  padding: 15px;
+}
 
 @media (max-width: 1096px) {
   .card-name {
@@ -144,7 +382,7 @@ body img {
 
 @media (max-width: 480px) {
   #products-container {
-    grid-template-columns: repeat(3, 1fr); !important;
+    grid-template-columns: repeat(3, 1fr) !important;
     gap: 8px;
     margin: auto 10px;
   }
@@ -154,6 +392,11 @@ body img {
   }
 
   .nav-menu {
-    max-width: 480px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .nav-menu > li > a {
+    font-size: 11px;
   }
 }

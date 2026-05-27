@@ -9,61 +9,125 @@
   <script type="module" src="js/app.js"></script>
   <link rel="stylesheet" href="css/style.css">
 
+  <div class="nav">
+    <div class="nav-logos">
+      <div class="omocat-logo">
+        <a href="index.html"><img src="omocattagcircle.webp" alt=""></a>
+      </div>
+      <div class="useful-logo">
+        <a href=""><img src="magnifying-glass.png" alt=""></a>
+        <a href=""><img src="user.png" alt=""></a>
+        <a href="" id="cartIcon" class="cart-icon-wrapper">
+          <img src="grocery-store.png" alt="">
+          <span id="cartCount" class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
 
-  <ul class="nav-menu">
-    <li><a href="">ALL</a></li>
-    <li><a href="">COLLECTIONS</a>
-      <ul>
-        <li><a href="">HOLOLIVE EN</a></li>
-        <li><a href="">HOLOLIVE STAGE W.T. '24 -SOAR!-</a></li>
-        <li><a href="">HOLOLIVE GAMERS</a></li>
-        <li><a href="">HOLOLIVE MEET</a></li>
-        <li><a href="">OMORI</a></li>
-        <li><a href="">ORIGINAL</a></li>
-        <li><a href="">OMOCAT 10TH ANNI</a></li>
-        <li><a href="">SAMEKO SABA</a></li>
-        <li><a href="">POKÉMON© CENTER</a></li>
-      </ul>
-    </li>
-    <li><a href="">APPAREL</a>
-      <ul>
-        <li><a href="">JACKETS & ZIPS</a></li>
-        <li><a href="">SWEATERS & HOODIES</a></li>
-        <li><a href="">SHIRTS</a></li>
-        <li><a href="">PANTS & SHORTS</a></li>
-      </ul>
-    </li>
-    <li><a href="">ACCESSORIES</a>
-      <ul>
-        <li><a href="">HATS</a></li>
-        <li><a href="">BAGS</a></li>
-        <li><a href="">LANYARDS</a></li>
-        <li><a href="">KEYCHAINS & STANDS</a></li>
-        <li><a href="">PINS</a></li>
-        <li><a href="">DESK & STATIONERY</a></li>
-        <li><a href="">HOMEWARE</a></li>
-      </ul>
-    </li>
-    <li><a href="">COLLECTIBLES</a>
-      <ul>
-        <li><a href="">PLUSHIES</a></li>
-        <li><a href="">FIGURES</a></li>
-        <li><a href="">BOOKS & MEDIA</a></li>
-        <li><a href="">ART PRINTS & POSTERS</a></li>
-        <li><a href="">SKATE DECKS</a></li>
-      </ul>
-    </li>
-    <li><a href="">INFO</a>
-      <ul>
-        <li><a href="">ABOUT OMOCAT</a></li>
-        <li><a href="">CONTACT US</a></li>
-        <li><a href="">FAQ</a></li>
-      </ul>
-    </li>
-  </ul>
+    <ul class="nav-menu">
+      <li><a href="">ALL</a></li>
+      <li><a href="" class="has-dropdown">COLLECTIONS</a>
+        <ul>
+          <li><a href="">HOLOLIVE EN</a></li>
+          <li><a href="">HOLOLIVE STAGE W.T. '24 -SOAR!-</a></li>
+          <li><a href="">HOLOLIVE GAMERS</a></li>
+          <li><a href="">HOLOLIVE MEET</a></li>
+          <li><a href="">OMORI</a></li>
+          <li><a href="">ORIGINAL</a></li>
+          <li><a href="">OMOCAT 10TH ANNI</a></li>
+          <li><a href="">SAMEKO SABA</a></li>
+          <li><a href="">POKÉMON© CENTER</a></li>
+        </ul>
+      </li>
+      <li><a href="" class="has-dropdown">APPAREL</a>
+        <ul>
+          <li><a href="">JACKETS & ZIPS</a></li>
+          <li><a href="">SWEATERS & HOODIES</a></li>
+          <li><a href="">SHIRTS</a></li>
+          <li><a href="">PANTS & SHORTS</a></li>
+        </ul>
+      </li>
+      <li><a href="" class="has-dropdown">ACCESSORIES</a>
+        <ul>
+          <li><a href="">HATS</a></li>
+          <li><a href="">BAGS</a></li>
+          <li><a href="">LANYARDS</a></li>
+          <li><a href="">KEYCHAINS & STANDS</a></li>
+          <li><a href="">PINS</a></li>
+          <li><a href="">DESK & STATIONERY</a></li>
+          <li><a href="">HOMEWARE</a></li>
+        </ul>
+      </li>
+      <li><a href="" class="has-dropdown">COLLECTIBLES</a>
+        <ul>
+          <li><a href="">PLUSHIES</a></li>
+          <li><a href="">FIGURES</a></li>
+          <li><a href="">BOOKS & MEDIA</a></li>
+          <li><a href="">ART PRINTS & POSTERS</a></li>
+          <li><a href="">SKATE DECKS</a></li>
+        </ul>
+      </li>
+      <li><a href="" class="has-dropdown">INFO</a>
+        <ul>
+          <li><a href="">ABOUT OMOCAT</a></li>
+          <li><a href="">CONTACT US</a></li>
+          <li><a href="">FAQ</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div id="cartDrawer" class="cart-drawer">
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <p>Shopping Cart</p>
+        <button id="closeCartBtn" class="close-btn">×</button>
+      </div>
+      <div id="cartItemsContainer" class="drawer-body">
+        <p>Your cart is empty.</p>
+      </div>
+      <div class="drawer-footer">
+        <div class="cart-total">Subtotal: $
+          <div>
+            <span id="cartTotalPrice"></span>
+          </div>
+
+        </div>
+        <button id="checkoutBtn" class="checkout-btn">CHECKOUT</button>
+      </div>
+    </div>
+  </div>
+
 
 </head>
 <body>
   <div id="products-container"></div>
 </body>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>INFO</h3>
+      <p><a href="">About OMOCAT</a></p>
+      <p><a href="">Contact Us</a></p>
+      <p><a href="">FAQ</a></p>
+    </div>
+
+    <div class="footer-section">
+      <h3>NEWSLETTER</h3>
+      <button>SUBSCRIBE</button>
+    </div>
+
+    <div class="footer-section">
+      <h3>SNS</h3>
+      <a href=""><img src="facebook-icon.png" alt=""></a>
+      <a href=""><img src="twitter-vector-logo.avif" alt=""></a>
+      <a href=""><img src="instagram-icon.png" alt=""></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p><a href="index.html">@2026, OMOCAT</a></p>
+  </div>
+</footer>
 </html>

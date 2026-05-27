@@ -1,10 +1,11 @@
 export class Product {
-  constructor(imgUrl, name, price, isSold, hover) {
+  constructor(imgUrl, name, price, isSold, hover, categories = []) {
     this.imgUrl = imgUrl;
     this.name = name;
     this.price = price;
     this.isSold = isSold;
     this.hover = hover;
+    this.categories = categories;
   }
 
   createCard() {
