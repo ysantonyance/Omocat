@@ -23,4 +23,8 @@ class SearchBar {
       this.container.appendChild(product.createCard())
     });
   }
+
+  toJSON() {
+    return JSON.stringify(structuredClone(this), null, 2);
+  }
 }

@@ -7,4 +7,8 @@ export class CartItem {
   getTotal() {
     return this.product.price * this.quantity;
   }
+
+  toJSON() {
+    return JSON.stringify(structuredClone(this), null, 2);
+  }
 }

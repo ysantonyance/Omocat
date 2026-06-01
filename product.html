@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Product Details - OMOCAT</title>
+  <script type="module" src="js/entities/ProductDetails.js"></script>
+  <link rel="stylesheet" href="css/product.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-logos">
+    <div class="omocat-logo">
+      <a href="index.html"><img src="omocattagcircle.webp" alt=""></a>
+    </div>
+    <div class="useful-logo">
+      <a href=""><img src="magnifying-glass.png" alt=""></a>
+      <a href=""><img src="user.png" alt=""></a>
+      <a href="" id="cartIcon" class="cart-icon-wrapper">
+        <img src="grocery-store.png" alt="">
+        <span id="cartCount" class="cart-badge">0</span>
+      </a>
+    </div>
+  </div>
+
+  <ul class="nav-menu">
+    <li><a href="index.html">ALL</a></li>
+    <li><a href="" class="has-dropdown">COLLECTIONS</a>
+      <ul>
+        <li><a href="">HOLOLIVE EN</a></li>
+        <li><a href="">HOLOLIVE STAGE W.T. '24 -SOAR!-</a></li>
+        <li><a href="">HOLOLIVE GAMERS</a></li>
+        <li><a href="">HOLOLIVE MEET</a></li>
+        <li><a href="">OMORI</a></li>
+        <li><a href="">ORIGINAL</a></li>
+        <li><a href="">OMOCAT 10TH ANNI</a></li>
+        <li><a href="">SAMEKO SABA</a></li>
+        <li><a href="">POKÉMON© CENTER</a></li>
+      </ul>
+    </li>
+    <li><a href="" class="has-dropdown">APPAREL</a>
+      <ul>
+        <li><a href="">JACKETS & ZIPS</a></li>
+        <li><a href="">SWEATERS & HOODIES</a></li>
+        <li><a href="">SHIRTS</a></li>
+        <li><a href="">PANTS & SHORTS</a></li>
+      </ul>
+    </li>
+    <li><a href="" class="has-dropdown">ACCESSORIES</a>
+      <ul>
+        <li><a href="">HATS</a></li>
+        <li><a href="">BAGS</a></li>
+        <li><a href="">LANYARDS</a></li>
+        <li><a href="">KEYCHAINS & STANDS</a></li>
+        <li><a href="">PINS</a></li>
+        <li><a href="">DESK & STATIONERY</a></li>
+        <li><a href="">HOMEWARE</a></li>
+      </ul>
+    </li>
+    <li><a href="" class="has-dropdown">COLLECTIBLES</a>
+      <ul>
+        <li><a href="">PLUSHIES</a></li>
+        <li><a href="">FIGURES</a></li>
+        <li><a href="">BOOKS & MEDIA</a></li>
+        <li><a href="">ART PRINTS & POSTERS</a></li>
+        <li><a href="">SKATE DECKS</a></li>
+      </ul>
+    </li>
+    <li><a href="" class="has-dropdown">INFO</a>
+      <ul>
+        <li><a href="">ABOUT OMOCAT</a></li>
+        <li><a href="">CONTACT US</a></li>
+        <li><a href="">FAQ</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div id="cartDrawer" class="cart-drawer">
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-content">
+    <div class="drawer-header">
+      <p>Shopping Cart</p>
+      <button id="closeCartBtn" class="close-btn">×</button>
+    </div>
+    <div id="cartItemsContainer" class="drawer-body">
+      <p>Your cart is empty.</p>
+    </div>
+    <div class="drawer-footer">
+      <div class="cart-total">Subtotal: $<span id="cartTotalPrice">0</span></div>
+      <button id="checkoutBtn" class="checkout-btn"><a href="checkout.html">CHECKOUT</a></button>
+    </div>
+  </div>
+</div>
+
+<div class="product-main">
+  <div class="product-container">
+
+    <div class="product-images">
+      <div class="main-image">
+        <img id="main-product-image" src="" alt="Product image">
+      </div>
+      <div class="sub-images" id="sub-images"></div>
+    </div>
+
+    <div class="product-right">
+
+      <div class="product-info">
+        <p class="product-name" id="product-name"></p>
+        <span class="product-price" id="product-price"></span>
+        <div id="product-availability"></div>
+        <div id="product-categories"></div>
+
+        <p>Pay 4 interest-free installments of $<span></span> with <img src="Shop-Pay.png" alt=""> <a href="">Learn more</a></p>
+
+        <div class="quantity-section">
+          <label for="quantity">QUANTITY</label>
+          <div class="quantity-controls">
+            <button id="decrease-bt" class="button">-</button>
+            <input type="number" id="quantity" value="1" min="1" max="10">
+            <button id="increase-bt" class="button">+</button>
+          </div>
+        </div>
+
+        <div class="size-section">
+          <p>SIZE</p>
+        </div>
+
+        <button id="add-to-cart-bt" class="add-to-cart-bt">ADD TO CART</button>
+
+        <hr class="separator">
+        <p>Free shipping to U.S. for all orders $150 or more.</p>
+        <hr class="separator">
+        <p>【日本のお客様へ】ローマ字でご住所をご記入いただきますようお願い申し上げます。ご住所に日本語の文字が含まれている場合、正確な配送が難しい可能性がございますので、ご理解いただけますと幸いです。</p>
+        <hr class="separator">
+      </div>
+
+      <div class="product-description">
+        <p>Official collaboration between hololive and OMOCAT featuring holoJustice.
+          Printed on a 70% ring-spun cotton 30% polyester UNISEX varsity jacket.
+          Illustrated by <a href="https://mincedmint.com/">MINCED</a>,
+          <a href="https://twitter.com/starsowing" rel="noopener" target="_blank">EMS</a>,
+          and <a href="https://www.omocat.com/">OMOCAT</a>.
+          Model is 6'2" wearing size XL.
+        </p>
+
+        <table class="size-table">
+          <tbody>
+          <tr><td></td><td>Chest</td><td>Sleeve</td><td>Length</td></tr>
+          <tr><td>S</td><td>18.9"</td><td>24.8"</td><td>25.59"</td></tr>
+          <tr><td>M</td><td>20.47"</td><td>25.59"</td><td>26.77"</td></tr>
+          <tr><td>L</td><td>22.05"</td><td>26.38"</td><td>27.95"</td></tr>
+          <tr><td>XL</td><td>23.62"</td><td>27.17"</td><td>29.13"</td></tr>
+          <tr><td>XXL</td><td>25.2"</td><td>27.95"</td><td>30.31"</td></tr>
+          <tr><td>3XL</td><td>26.77"</td><td>28.74"</td><td>31.5"</td></tr>
+          </tbody>
+        </table>
+
+        <p>Machine wash cold inside-out // With like colors</p>
+        <p>Hang dry // Do not iron or steam.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="may-like">
+  <p>YOU MAY ALSO LIKE</p>
+  <div class="may-like-scroll" id="may-like-scroll"></div>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>INFO</h3>
+      <p><a href="">About OMOCAT</a></p>
+      <p><a href="">Contact Us</a></p>
+      <p><a href="">FAQ</a></p>
+    </div>
+    <div class="newsletter-section">
+      <h3>NEWSLETTER</h3>
+      <input type="email" placeholder="email@example.com">
+      <button>SUBSCRIBE</button>
+    </div>
+    <div class="footer-section">
+      <h3>SNS</h3>
+      <a href=""><img src="facebook-icon.png" alt=""></a>
+      <a href=""><img src="twitter-vector-logo.avif" alt=""></a>
+      <a href=""><img src="instagram-icon.png" alt=""></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p><a href="index.html">@2026, OMOCAT</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

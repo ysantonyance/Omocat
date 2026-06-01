@@ -4,7 +4,7 @@ export class Cart {
   }
 
   addItem(product) {
-    let existingItem = this.items.find(item => item.id === product.name);
+    let existingItem = this.items.find(item => item.id === product.id);
 
     if (existingItem) {
       existingItem.quantity++;
@@ -16,10 +16,24 @@ export class Cart {
     }
 
     console.log(`Added ${product.name} to cart`);
+    this.saveToLocalStorage();
   }
 
-  removeItem(productName) {
-    this.items = this.items.filter(item => item.product.name !== productName);
+  removeItem(productId) {
+    this.items = this.items.filter(item => item.product.id !== productId);
+    this.saveToLocalStorage();
+  }
+
+  updateQuantity(productId, quantity) {
+    let item = this.items.find(item => item.prouct.id === productId);
+    if (item) {
+      if (quantity <= 0) {
+        this.removeItem(productId);
+      } else {
+        item.quantity = quantity;
+        this.saveToLocalStorage();
+      }
+    }
   }
 
   getTotal() {
@@ -30,6 +44,21 @@ export class Cart {
     return total;
   }
 
+  getItemCount() {
+    return this.items.reduce((acc, item) => acc + item.quantity, 0);
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem('cartItems', JSON.stringify(this.items));
+  }
+
+  loadFromLocalStorage() {
+    let savedItems = localStorage.getItem('cartItems');
+    if (savedItems) {
+      this.items = JSON.parse(savedItems);
+    }
+  }
+
   showCart() {
     console.log(`Your cart`);
     for (let item of this.items) {
@@ -37,5 +66,9 @@ export class Cart {
     }
 
     console.log(`Total: $${this.getTotal()}`);
+  }
+
+  toJSON() {
+    return JSON.stringify(structuredClone(this), null, 2);
   }
 }

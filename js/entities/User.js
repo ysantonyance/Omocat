@@ -10,4 +10,8 @@ class User {
   getFullName() {
     return `${this.name} ${this.lastname}`;
   }
+
+  toJSON() {
+    return JSON.stringify(structuredClone(this), null, 2);
+  }
 }

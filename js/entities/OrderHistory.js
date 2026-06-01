@@ -53,4 +53,8 @@ class OrderHistory {
       this.orders = JSON.parse(saved);
     }
   }
+
+  toJSON() {
+    return JSON.stringify(structuredClone(this), null, 2);
+  }
 }

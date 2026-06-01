@@ -1,0 +1,257 @@
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/zen-maru-gothic/ZenMaruGothic-Regular.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/zen-maru-gothic/ZenMaruGothic-Medium.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/zen-maru-gothic/ZenMaruGothic-Bold.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../fonts/zen-maru-gothic/ZenMaruGothic-Black.ttf') format('ttf');
+}
+
+html {
+  letter-spacing: 1px;
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+body {
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.checkout-container {
+  display: flex;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.checkout-form {
+  flex: 1;
+  padding: 40px 60px;
+  max-width: 60%;
+}
+
+.logo-header img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+.path {
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.path a {
+  text-decoration: none;
+  color: black;
+}
+
+.information {
+  font-weight: bold;
+  color: black;
+  pointer-events: none;
+}
+
+.express {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: grey;
+}
+
+.payment-section {
+  max-width: 500px;
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.button-section {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.button-section button {
+  flex: 1;
+  min-width: 100px;
+  height: 50px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shop-button {
+  border: 2px solid grey;
+}
+
+.paypal-button {
+  background-color: goldenrod;
+  border: none;
+}
+
+.gpay-button {
+  border: 2px solid grey;
+  background-color: white;
+}
+
+.button-section button img {
+  width: 80px;
+  height: 25px;
+}
+
+.separation-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 25px 0;
+}
+
+.separator {
+  flex: 1;
+  border: none;
+  border-top: 1px solid grey;
+}
+
+.separation-section span {
+  font-size: 12px;
+}
+
+.form-row {
+  margin-bottom: 20px;
+}
+
+.form-row h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.form-header h3{
+  font-size: 18px;
+  display: flex;
+}
+
+.form-header a {
+  color: grey;
+  font-size: 14px;
+}
+
+.form-row input:not(.duo input),
+.form-row select {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+  transition: outline-color 0.3s;
+}
+
+.checkbox-row label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  color: grey;
+}
+
+.checkbox-row input {
+  width: auto;
+}
+
+.form-row.duo {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row.duo input {
+  flex: 1;
+  width: auto;
+}
+
+/*form {
+  width: 100%;
+}*/
+
+/*.separator {
+  border: none;
+  border-top: 1px solid grey;
+  margin: 0 50px;
+}
+
+.path a {
+  text-decoration: none;
+  color: black;
+}
+
+.information {
+  font-weight: bold;
+  pointer-events: none;
+}*/
+
+/*body img {
+  width: 50px;
+  height: 50px;
+}*/
+
+/*
+body button {
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.gpay-button {
+  background-color: white;
+  border: 2px solid lightgrey;
+}
+
+.shop-button {
+  background-color: white;
+  border: 2px solid lightgrey;
+}
+
+.shop-button img {
+  width: 40px;
+  height: 20px;
+}
+
+.paypal-button {
+  background-color: goldenrod;
+}
+*/
+

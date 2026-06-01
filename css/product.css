@@ -38,49 +38,225 @@ body {
   text-align: center;
 }
 
-body img {
-  max-width: 250px;
-  max-height: 500px;
+.product-main {
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 0 32px;
 }
 
-
-.card-name {
-  max-height: 50px;
-  text-align: center;
-}
-
-#products-container {
+.product-container {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 35px;
-  margin: auto 50px;
+  grid-template-columns: 2fr 3fr;
+  gap: 32px;
+  align-items: start;
 }
 
-.product-card {
+.product-images .main-image img {
   width: 100%;
-  min-width: 0;
- }
+  display: block;
+}
 
-.product-img {
-  width: 100%;
-  max-width: 100%;
+.product-info img {
+  width: 35px;
+  height: 15px;
+  transform: translateY(3px);
+}
+
+.product-info p {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 300;
+}
+
+.sub-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.sub-images img {
+  width: 21%;
   height: auto;
+  object-fit: cover;
+  cursor: pointer;
 }
 
+.sub-images img:hover {
+  border-color: #000;
+}
 
-.sold-badge {
-  position: absolute;
-  width: 100px;
-  height: 40px;
+.product-right {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.product-info {
+  background-color: whitesmoke;
+  padding: 32px;
+  border-radius: 4px;
+}
+
+.product-name {
+  text-align: left;
+  font-size: 14px;
+}
+
+.product-price {
+  display: block;
+  text-align: left;
+  font-size: 18px;
+  font-weight: lighter;
+}
+
+.product-description {
+  padding: 0 8px;
+}
+
+.product-description p {
+  font-size: 12px;
+  color: #393837;
+  text-align: left;
+}
+
+.product-description a {
+  color: #393837;
+  text-decoration: none;
+  border-bottom: 1px solid #393837;
+}
+
+.product-description a:hover {
+  transform: translateY(5px);
+}
+
+.size-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.size-table td {
+  padding: 15px;
+  border: 1px solid #393837;
+  font-size: 12px;
+  color: #393837;
+}
+
+.size-table tr:first-child td {
+}
+
+.size-section {
+  margin: 16px 0;
+  text-align: left;
+}
+
+.size-section p {
+  font-size: 12px;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.size-button {
+  width: 8%;
+  height: 35px;
+  margin: 4px;
+  border: 1px solid #000;
+  background-color: transparent;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.size-button.active {
+  background: #000;
+  color: #fff;
+}
+
+.size-button.out-of-stock {
+  border-color: #bbb;
+  color: #bbb;
+  position: relative;
+  text-decoration: line-through;
+}
+
+.add-to-cart-bt {
+  width: 100%;
   background-color: black;
   color: white;
-  text-align: center;
-  font-size: 12px;
-  align-content: center;
-  pointer-events: none;
-  top: 0.5px;
-  left: 0.5px;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  font-weight: bold;
 }
+
+.add-to-cart-bt:hover {
+  background-color: dimgrey;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.quantity-section {
+  text-align: left;
+}
+
+.quantity-section label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.quantity-controls button, input {
+  width: 25px;
+  text-align: center;
+  border: none;
+  background-color: whitesmoke;
+  cursor: pointer;
+}
+
+.may-like {
+  max-width: 1200px;
+  margin: 48px auto;
+  padding: 0 32px;
+}
+
+.may-like > p {
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.may-like-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+}
+
+.may-like-card {
+  flex: 0 0 160px;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+}
+
+.may-like-card img {
+  width: 100%;
+  display: block;
+}
+
+.may-like-card .card-name {
+  font-size: 13px;
+  margin: 6px 0 3px;
+}
+
+.may-like-card .card-price {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+
+
 
 .img-container {
   position: relative;
@@ -271,6 +447,7 @@ footer input {
   border: none;
   border-bottom: 1px solid ;
   width: 250px;
+  background-color: transparent;
 }
 
 .cart-drawer {
@@ -377,33 +554,8 @@ footer input {
   padding: 15px;
 }
 
-@media (max-width: 1096px) {
-  .card-name {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 990px) {
-  #products-container {
-    gap: 15px;
-    margin: auto 12px;
-  }
-
-  .card-name {
-    font-size: 10px;
-  }
-}
 
 @media (max-width: 480px) {
-  #products-container {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 8px;
-    margin: auto 10px;
-  }
-
-  .card-name {
-    font-size: 10px;
-  }
 
   .nav-menu {
     gap: 12px;
