@@ -31,7 +31,7 @@
           <hr class="separator">
         </div>
 
-        <form action="/submit" id="checkout-for">
+        <form action="/submit" id="checkout-for" novalidate>
           <div class="form-row">
             <div class="form-header">
               <h3>Contact</h3>
@@ -40,7 +40,11 @@
           </div>
 
           <div class="form-row">
-            <input type="email" placeholder="Email" required/>
+            <div class="field">
+              <input type="email" id="email" name="email" placeholder="Email" required/>
+              <small id="email-error"></small>
+            </div>
+
           </div>
 
           <div class="form-row checkbox-row">
@@ -58,8 +62,7 @@
             <select name="country-region" id="country-region" required>
               <option value=""> United States </option>
               <option value=""> United Kingdom </option>
-              <option value="" selected> Country/region \n
-                --- </option>
+              <option value="" disabled selected> Country/region</option>
               <option value=""> Afghanistan </option>
               <option value=""> Albania </option>
               <option value=""> Algeria </option>
@@ -265,8 +268,15 @@
           </div>
 
           <div class="form-row duo">
-            <input type="text" placeholder="First name" required>
-            <input type="text" placeholder="Last name" required>
+            <div class="field">
+              <input type="text" name="firstName" id="firstName" placeholder="First name" required>
+              <small id="firstName-error"></small>
+            </div>
+            <div class="field">
+              <input type="text" name="lastName" id="lastName" placeholder="Last name" required>
+              <small id="lastName-error"></small>
+            </div>
+
           </div>
 
           <div class="form-row">
@@ -274,7 +284,11 @@
           </div>
 
           <div class="form-row">
-            <input type="text" placeholder="Address" required/>
+            <div class="field">
+              <input type="text" name="address" id="address" placeholder="Address" required/>
+              <small id="address-error"></small>
+            </div>
+
           </div>
 
           <div class="form-row">
@@ -282,13 +296,33 @@
           </div>
 
           <div class="form-row duo">
-            <input type="text" placeholder="Postal code" required/>
-            <input type="text" placeholder="City" required/>
+            <div class="field">
+              <input type="text" name="city" id="city" placeholder="City" required/>
+              <small id="city-error"></small>
+            </div>
+            <div class="field">
+              <input type="text" name="postalCode" id="postalCode" placeholder="Postal code" required/>
+              <small id="postalCode-error"></small>
+            </div>
+
           </div>
 
           <div class="form-row">
-            <input type="text" placeholder="Phone" required/>
+            <div class="field">
+              <input type="text" name="phone" id="phone" placeholder="Phone" required/>
+              <small id="phone-error"></small>
+            </div>
+
           </div>
+
+          <div class="final-buttons">
+            <a href="cart.html">Return to cart</a>
+            <button type="submit">Continue to shipping</button>
+          </div>
+
+          <hr class="separator">
+
+          <a href="">Refund policy</a>
         </form>
       </div>
     </div>
@@ -296,5 +330,6 @@
 
     </div>
   </div>
+  <script src="js/entities/Checkout.js"></script>
 </body>
 </html>
