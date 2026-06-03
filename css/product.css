@@ -38,6 +38,12 @@ body {
   text-align: center;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
 .product-main {
   max-width: 1200px;
   margin: 32px auto;
@@ -324,23 +330,6 @@ body {
   color: darkgrey;
 }
 
-.nav-menu ul {
-  position: absolute;
-  list-style: none;
-  background-color: white;
-  z-index: 100;
-  left: 0;
-  right: auto;
-  min-width: 160px;
-  padding: 8px 0;
-  top: 100%;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.2s,
-  transform 0.2s,
-  visibility 0s linear 0.2s;
-}
-
 .nav-menu > li:hover > ul {
   visibility: visible;
   opacity: 1;
@@ -460,26 +449,14 @@ footer input {
   visibility: hidden;
 }
 
+
+
 .drawer-overlay {
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
   opacity: 0;
   transition: opacity 0.6s;
-}
-
-.drawer-content {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  max-width: 750px;
-  height: 100%;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  transform: translateX(100%);
-  transition: transform 0.6s;
 }
 
 .cart-drawer.open {
@@ -552,6 +529,11 @@ footer input {
 
 .cart-total {
   padding: 15px;
+}
+
+#cartItemsContainer {
+  height: 400px;
+  overflow-y: auto;
 }
 
 

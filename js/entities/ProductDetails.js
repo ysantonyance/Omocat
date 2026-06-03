@@ -16,20 +16,40 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('product-name').textContent = product.name;
   document.getElementById('product-price').textContent = `$${product.price}`;
 
-  let avail = document.getElementById('product-availability');
-  avail.textContent = product.isSold ? 'SOLD OUT' : 'IN STOCK';
-  avail.className = product.isSold ? 'sold-out' : 'in-stock';
-
-  let cats = document.getElementById('product-categories');
-  cats.textContent = product.categories.map(c => c.name).join(' / ');
+  let mainProductImage = document.getElementById('main-product-image');
+  if (mainProductImage) {
+    mainProductImage.src = product.imgUrl;
+  }
 
   let subImages = document.getElementById('sub-images');
-  let allImages = [product.imgUrl, product.hover, ...(product.images || [])].filter(Boolean);
+  subImages.innerHTML = '';
+
+  let allImages = [product.imgUrl, product.hover, product.images].flat().filter(Boolean);
+
   allImages.forEach(src => {
     let img = document.createElement('img');
     img.src = src;
+    img.className = 'sub-image-thumb';
+    img.style.cursor = 'pointer';
+
+    img.addEventListener('click', () => {
+      if (mainProductImage) mainProductImage.src = src;
+    });
+
     subImages.appendChild(img);
   });
+
+  let qtyInput = document.getElementById('quantity');
+
+  document.getElementById('increase-bt').onclick = () => {
+    let currentVal = parseInt(qtyInput.value) || 1;
+    qtyInput.value = Math.min(4, currentVal + 1);
+  };
+
+  document.getElementById('decrease-bt').onclick = () => {
+    let currentVal = parseInt(qtyInput.value) || 1;
+    qtyInput.value = Math.max(1, currentVal - 1);
+  };
 
   let sizeSection = document.querySelector('.size-section');
   let selectedSize = null;
@@ -55,41 +75,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  document.getElementById('add-to-cart-bt').addEventListener('click', () => {
+  document.getElementById('add-to-cart-bt').onclick = () => {
     if (product.sizes && product.sizes.length > 0 && !selectedSize) {
       alert('Please select a size.');
       return;
     }
-    cart.addItem(product);
+
+    let countToAdd = parseInt(qtyInput.value) || 1;
+
+    for (let i = 0; i < countToAdd; i++) {
+      cart.addItem(product);
+    }
+
     updateCartBadge();
     renderCart();
-  });
 
-  let qtyInput = document.getElementById('quantity');
-  document.getElementById('increase-bt').addEventListener('click', () => {
-    qtyInput.value = Math.min(4, parseInt(qtyInput.value) + 1);
-  });
-  document.getElementById('decrease-bt').addEventListener('click', () => {
-    qtyInput.value = Math.max(1, parseInt(qtyInput.value) - 1);
-  });
+    let cartDrawer = document.getElementById('cartDrawer');
+    if (cartDrawer) {
+      cartDrawer.classList.add('open');
+    }
+  };
 
   let scroll = document.getElementById('may-like-scroll');
-  let related = products
-    .filter(p => p.name !== product.name && p.categories.some(c =>
-      product.categories.map(pc => pc.id).includes(c.id)
-    ))
-    .slice(0, 7);
+  if (scroll) {
+    scroll.innerHTML = '';
+    let related = products
+      .filter(p => p.name !== product.name && p.categories.some(c =>
+        product.categories.map(pc => pc.id).includes(c.id)
+      ))
+      .slice(0, 7);
 
-  related.forEach(p => {
-    let card = document.createElement('a');
-    card.href = `product.html?productName=${encodeURIComponent(p.name)}`;
-    card.className = 'may-like-card';
-    card.innerHTML = `
-      <img src="${p.imgUrl}" alt="${p.name}">
-      <p class="card-name">${p.name}</p>
-      <p class="card-price">$${p.price}</p>
-      ${p.isSold ? '<span class="sold-badge">SOLD OUT</span>' : ''}
-    `;
-    scroll.appendChild(card);
-  });
+    related.forEach(p => {
+      let card = document.createElement('a');
+      card.href = `product.html?productName=${encodeURIComponent(p.name)}`;
+      card.className = 'may-like-card';
+      card.innerHTML = `
+        <img src="${p.imgUrl}" alt="${p.name}">
+        <p class="card-name">${p.name}</p>
+        <p class="card-price">$${p.price}</p>
+        ${p.isSold ? '<span class="sold-badge">SOLD OUT</span>' : ''}
+      `;
+      scroll.appendChild(card);
+    });
+  }
 });

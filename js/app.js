@@ -297,7 +297,7 @@ export let products = [
 
 export function setupCart() {
   let cart = new Cart();
-  cart.loadFromLocalStorage();
+  cart.loadFromCart();
 
   function updateCartBadge() {
     let badge = document.getElementById('cartCount');
@@ -320,6 +320,7 @@ export function setupCart() {
 
     container.innerHTML = '';
     cart.items.forEach(item => {
+      if (!item || !item.product) return;
       let div = document.createElement('div');
       div.className = 'cart-item';
       div.innerHTML = `
@@ -374,9 +375,15 @@ export function setupCart() {
     cartDrawer.classList.add('open');
   });
   if (closeCartBtn)
-    closeCartBtn.addEventListener('click', () => cartDrawer.classList.remove('open'));
+    closeCartBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      cartDrawer.classList.remove('open');
+    });
   if (drawerOverlay)
-    drawerOverlay.addEventListener('click', () => cartDrawer.classList.remove('open'));
+    drawerOverlay.addEventListener('click', (e) => {
+      e.preventDefault();
+      cartDrawer.classList.remove('open')
+    });
 
   updateCartBadge();
 
@@ -384,12 +391,12 @@ export function setupCart() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  let { cart, renderCart, updateCartBadge } = setupCart();
   let container = document.getElementById('products-container');
-  if (!container)
-    return;
+  if (container) {
+    let generator = new ProductGenerator();
+    generator.generate(products, container);
+  }
 
-  let generator = new ProductGenerator();
-  generator.generate(products, container);
-
-  setupCart();
+  updateCartBadge();
 });

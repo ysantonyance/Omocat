@@ -377,6 +377,11 @@ footer input {
   padding: 15px;
 }
 
+#cartItemsContainer {
+  height: 400px;
+  overflow-y: auto;
+}
+
 @media (max-width: 1096px) {
   .card-name {
     font-size: 14px;

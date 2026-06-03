@@ -1,10 +1,35 @@
+function setCookie(name, value, days) {
+  let expires = "";
+  if (days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + value + expires + "; path=/; SameSite=Lax"; // кукі надсилаються тільки при навігаційних запитах
+  // (наприклад, перехід за посиланням) з іншого сайту, але не для крос-доменних AJAX-запитів чи інших не-навігаційних дій
+  // це баланс між безпекою (захист від CSRF-атак) і зручністю для користувача
+}
+
+function getCookie(name) {
+  const nameEQ = name + "=";
+  const cookies = document.cookie.split(';');
+  for (let cookie of cookies) {
+    cookie = cookie.trim();
+    if (cookie.startsWith(nameEQ)) {
+      return cookie.substring(nameEQ.length);
+    }
+  }
+  return null;
+}
+
 export class Cart {
   constructor() {
     this.items = [];
+    this.loadFromCart();
   }
 
   addItem(product) {
-    let existingItem = this.items.find(item => item.id === product.id);
+    let existingItem = this.items.find(item => item.product.id === product.id);
 
     if (existingItem) {
       existingItem.quantity++;
@@ -16,22 +41,22 @@ export class Cart {
     }
 
     console.log(`Added ${product.name} to cart`);
-    this.saveToLocalStorage();
+    this.saveToCart();
   }
 
   removeItem(productId) {
     this.items = this.items.filter(item => item.product.id !== productId);
-    this.saveToLocalStorage();
+    this.saveToCart();
   }
 
   updateQuantity(productId, quantity) {
-    let item = this.items.find(item => item.prouct.id === productId);
+    let item = this.items.find(item => item.product.id === productId);
     if (item) {
       if (quantity <= 0) {
         this.removeItem(productId);
       } else {
         item.quantity = quantity;
-        this.saveToLocalStorage();
+        this.saveToCart();
       }
     }
   }
@@ -48,14 +73,38 @@ export class Cart {
     return this.items.reduce((acc, item) => acc + item.quantity, 0);
   }
 
-  saveToLocalStorage() {
-    localStorage.setItem('cartItems', JSON.stringify(this.items));
+  saveToCart() {
+    let cleanData = this.items.map(item => ({
+      quantity: item.quantity,
+      product: {
+        id: item.product.id,
+        name: item.product.name,
+        price: item.product.price,
+        imgUrl: item.product.imgUrl,
+        isSold: item.product.isSold || false
+      }
+    }));
+
+    setCookie('cartItems', JSON.stringify(cleanData), 7);
   }
 
-  loadFromLocalStorage() {
-    let savedItems = localStorage.getItem('cartItems');
-    if (savedItems) {
-      this.items = JSON.parse(savedItems);
+  loadFromCart() {
+    let data = getCookie('cartItems');
+    if (data) {
+      try {
+        let parsedItems = JSON.parse(data);
+
+        if (Array.isArray(parsedItems)) {
+          this.items = parsedItems.filter(item => {
+            return item && item.product && item.product.name && item.product.id;
+          });
+        } else {
+          this.items = [];
+        }
+      } catch (e) {
+        console.log(e);
+        this.items = [];
+      }
     }
   }
 
