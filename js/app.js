@@ -4,6 +4,8 @@ import { Cart } from "./entities/Cart.js";
 import { checkout } from './entities/Cart.js';
 import { Product } from "./entities/Product.js";
 import { loadProducts } from "./entities/api.js";
+import { User } from "./entities/User.js";
+import { loginUser, logoutUser, onAuthStateChanged, auth, getUserData } from "./entities/firebase.js";
 
 let collections = new Category(1, "Collections", );
 let hololiveEn = new Category(2, "HOLOLIVE EN", collections);
@@ -392,15 +394,82 @@ export function setupCart() {
   return { cart, renderCart, updateCartBadge };
 }
 
+export function setupUser() {
+  let userData = null;
+
+  onAuthStateChanged(auth, async (firebaseUser) => {
+    if (firebaseUser) {
+      userData = await getUserData(firebaseUser.uid);
+    } else {
+      userData = null;
+    }
+    renderUser();
+  });
+
+  function renderUser() {
+    let form = document.querySelector(".user-form");
+    let signInBtn = document.getElementById("signInBtn");
+    if (!form) return;
+
+    if (!userData) {
+      form.style.display = "flex";
+      if (signInBtn) signInBtn.style.display = "block";
+    } else {
+      form.style.display = "none";
+      if (signInBtn) signInBtn.style.display = "none";
+    }
+  }
+
+  let signInBtn = document.getElementById("signInBtn");
+  if (signInBtn) {
+    signInBtn.addEventListener("click", async () => {
+      let email = document.getElementById("emailInput").value.trim();
+      let password = document.getElementById("passwordInput").value.trim();
+      let errorEl = document.getElementById("signInError");
+
+      if (!email || !password) {
+        errorEl.textContent = "Please fill in all fields.";
+        return;
+      }
+
+      try {
+        await loginUser(email, password);
+      } catch (e) {
+        errorEl.textContent = "Invalid email or password.";
+      }
+    });
+  }
+
+  function openUserDrawer() {
+    let drawer = document.getElementById("userDrawer");
+    if (!drawer) return;
+    renderUser();
+    drawer.classList.add("open");
+  }
+
+  function closeUserDrawer() {
+    let drawer = document.getElementById("userDrawer");
+    if (!drawer) return;
+    drawer.classList.remove("open");
+  }
+
+  let userIcon = document.getElementById("userIcon");
+  let closeBtn = document.getElementById("closeUserBtn");
+  let overlay = document.getElementById("userOverlay");
+
+  if (userIcon) userIcon.addEventListener("click", (e) => { e.preventDefault(); openUserDrawer(); });
+  if (closeBtn) closeBtn.addEventListener("click", closeUserDrawer);
+  if (overlay) overlay.addEventListener("click", closeUserDrawer);
+
+  return { renderUser, openUserDrawer, closeUserDrawer };
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   let { cart, renderCart, updateCartBadge } = setupCart();
+
   let container = document.getElementById('products-container');
   if (container) {
     let generator = new ProductGenerator();
-
-    //все работает, но мне нужный мои продукты, а не рандомные
-    /*let products = await loadProducts();*/
-
     generator.generate(products, container);
   }
 
@@ -412,6 +481,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       checkout(cart);
     });
   }
+
+  setupUser();
 });
-
-

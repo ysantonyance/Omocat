@@ -1,4 +1,4 @@
-class User {
+export class User {
   constructor(name, lastname, email, password, address) {
     this.name = name;
     this.lastname = lastname;
