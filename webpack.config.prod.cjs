@@ -13,6 +13,12 @@ module.exports = merge(common, {
       patterns: [
         { from: 'img', to: 'img' },
         { from: 'css', to: 'css' },
+        { from: 'user.html', to: 'user.html' },
+        { from: 'AboutOmocat.html', to: 'AboutOmocat.html' },
+        { from: 'ContactUs.html', to: 'ContactUs.html' },
+        { from: 'checkout.html', to: 'checkout.html' },
+        { from: 'product.html', to: 'product.html' },
+        { from: 'cart.html', to: 'cart.html' },
         { from: 'js/vendor', to: 'js/vendor' },
         { from: 'icon.svg', to: 'icon.svg' },
         { from: 'favicon.ico', to: 'favicon.ico' },
@@ -20,6 +26,9 @@ module.exports = merge(common, {
         { from: 'icon.png', to: 'icon.png' },
         { from: '404.html', to: '404.html' },
         { from: 'site.webmanifest', to: 'site.webmanifest' },
+        { from: '*.png', to: '.' },
+        { from: '*.webp', to: '.' },
+        { from: '*.avif', to: '.' }
       ],
     }),
   ],
