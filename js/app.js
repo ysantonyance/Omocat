@@ -1,6 +1,7 @@
 import { ProductGenerator } from "./entities/ProductGenerator.js";
 import { Category } from "./entities/Category.js";
 import { Cart } from "./entities/Cart.js";
+import { checkout } from './entities/Cart.js';
 import { Product } from "./entities/Product.js";
 
 let collections = new Category(1, "Collections", );
@@ -399,4 +400,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   updateCartBadge();
+
+  let checkoutBtn = document.getElementById('checkoutBtn');
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', checkout(cart));
+  }
 });
+
+

@@ -121,3 +121,72 @@ export class Cart {
     return JSON.stringify(structuredClone(this), null, 2);
   }
 }
+
+function createOrder(orderId) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (Math.random() < 0.1) {
+        reject('Rejected');
+      } else {
+        resolve('Accepted');
+      }
+    }, 1000)
+  })
+}
+
+function processOrder(orderId) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (Math.random() < 0.1) {
+        reject('Rejected');
+      } else {
+        resolve('Accepted');
+      }
+    }, 3000)
+  })
+}
+
+function deliverOrder(orderId) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (Math.random() < 0.1) {
+        reject('Rejected');
+      } else {
+        resolve('Accepted');
+      }
+    }, 3000)
+  })
+}
+
+function handleOrder(cart) {
+  let orderId = Date.now();
+
+  console.log('started forming an order: ', orderId);
+
+  createOrder(orderId)
+    .then((msg) => {
+      console.log(msg);
+      return processOrder(orderId);
+    })
+    .then((msg) => {
+      console.log(msg);
+      return deliverOrder(orderId);
+    })
+    .then((msg) => {
+      console.log(msg);
+      console.log('order is done');
+    })
+    .catch((err) => {
+      console.log(err);
+      console.log('order is not done due to error :(');
+    })
+}
+
+export function checkout(cart) {
+  if (cart.items.length === 0) {
+    console.log('The cart is empty');
+    return;
+  }
+  return handleOrder(cart);
+}
+
