@@ -3,6 +3,7 @@ import { Category } from "./entities/Category.js";
 import { Cart } from "./entities/Cart.js";
 import { checkout } from './entities/Cart.js';
 import { Product } from "./entities/Product.js";
+import { loadProducts } from "./entities/api.js";
 
 let collections = new Category(1, "Collections", );
 let hololiveEn = new Category(2, "HOLOLIVE EN", collections);
@@ -391,11 +392,15 @@ export function setupCart() {
   return { cart, renderCart, updateCartBadge };
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   let { cart, renderCart, updateCartBadge } = setupCart();
   let container = document.getElementById('products-container');
   if (container) {
     let generator = new ProductGenerator();
+
+    //все работает, но мне нужный мои продукты, а не рандомные
+    /*let products = await loadProducts();*/
+
     generator.generate(products, container);
   }
 
@@ -403,7 +408,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let checkoutBtn = document.getElementById('checkoutBtn');
   if (checkoutBtn) {
-    checkoutBtn.addEventListener('click', checkout(cart));
+    checkoutBtn.addEventListener('click', () => {
+      checkout(cart);
+    });
   }
 });
 
